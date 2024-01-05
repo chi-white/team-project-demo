@@ -249,11 +249,12 @@ export default function CartPage() {
       };
 
       console.log("data", data);
-
+      const token = storage.getItem("token");
       fetch(`${backendurl}/api/1.0/order/checkout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
         },
         body: JSON.stringify(data),
       })
