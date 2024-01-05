@@ -30,7 +30,7 @@ const mysqlConfig = {
 
 let mysqlEnv = mysqlConfig[env];
 mysqlEnv.waitForConnections = true;
-mysqlEnv.connectionLimit = 100;
+mysqlEnv.connectionLimit = 500;
 
 const pool = mysql.createPool(mysqlEnv, { multipleStatements });
 

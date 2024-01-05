@@ -32,7 +32,7 @@ export default function ProductPage() {
       <Header />
       {product.id}
       <ProductDetail product={product} />
-      <ReviewSection product_id={Number(productId)}/>
+      <ReviewSection product_id={Number(productId)} />
       <Footer />
     </div>
   );

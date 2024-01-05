@@ -139,7 +139,7 @@ export default function ProductDetail({ product }: { product: Product }) {
   }, [selectedSize]);
 
   useEffect(() => {
-    if (!user || !product) return;
+    if (!user) return;
 
     const getRecommendProducts = async () => {
       console.log("user id is", user.id);
@@ -154,10 +154,10 @@ export default function ProductDetail({ product }: { product: Product }) {
     };
 
     getRecommendProducts();
-  }, [user, product]);
+  }, [user]);
 
   useEffect(() => {
-    if (recommendProducts.length == 0 || recommendProductsDetail.length > 0)
+    if (recommendProducts.length < 3 || recommendProductsDetail.length > 0)
       return;
 
     const getRecommendProductsDetail = async () => {
@@ -167,7 +167,6 @@ export default function ProductDetail({ product }: { product: Product }) {
           `${backendurl}/api/1.0/products/details?id=${recommendProducts[i].product_id}`
         );
         const data = await response.json();
-        console.log("dataaaaaaaaaa", data);
 
         setRecommendProductsDetail((prev) => {
           return [...prev, data];
@@ -270,9 +269,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                                 setMessageCurrentRoom(res.roomId);
                               });
                           }}
-                        >
-                          客服
-                        </div>
+                        ></div>
                       </button>
                     </div>
                     <div className="text-sm text-gray-500">{product.id}</div>
